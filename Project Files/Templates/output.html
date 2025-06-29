@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Volume Prediction</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url("{{ url_for('static', filename='bg2.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: black;
+            text-align: center;
+            position: relative;
+        }
+
+        .title-overlay {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .sub-result {
+            position: absolute;
+            top: 200px; /* increased spacing */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 26px;
+            font-weight: normal;
+        }
+
+        .back-btn {
+            margin-top: 200px;
+        }
+
+        .back-btn a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .back-btn a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title-overlay">Traffic Volume Estimation</h1>
+    <div class="sub-result">{{ prediction_text }}</div>
+</body>
+</html>
