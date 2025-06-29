@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Volume Estimation</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='bg1.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        .main-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        .form-container {
+            margin-left: 50px;
+            margin-top: 20px;
+            width: 400px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            width: 100px;
+            font-weight: normal;
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 180px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            margin-top: 15px;
+            padding: 6px 16px;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #f0f0f0;
+        }
+
+        .prediction-text {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">Traffic Volume Estimation</h1>
+    <h1 class="form-title">Please enter the following details</h1>
+
+    <div class="form-container">
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="holiday">holiday:</label>
+                <select name="holiday" id="holiday">
+                    <option value="7">None</option>
+                    <option value="1">Columbus Day</option>
+                    <option value="10">Veterans Day</option>
+                    <option value="9">Thanksgiving Day</option>
+                    <option value="0">Christmas Day</option>
+                    <option value="6">New Years Day</option>
+                    <option value="11">Washingtons Birthday</option>
+                    <option value="5">Memorial Day</option>
+                    <option value="2">Independence Day</option>
+                    <option value="8">State Fair</option>
+                    <option value="3">Labor Day</option>
+                    <option value="4">Martin Luther King Jr Day</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="temp">temp:</label>
+                <input type="text" name="temp" id="temp" placeholder="temp">
+            </div>
+
+            <div class="form-group">
+                <label for="rain">rain:</label>
+                <input type="text" name="rain" id="rain" placeholder="rain">
+            </div>
+
+            <div class="form-group">
+                <label for="snow">snow:</label>
+                <input type="text" name="snow" id="snow" placeholder="snow">
+            </div>
+
+            <div class="form-group">
+                <label for="weather">weather:</label>
+                <select name="weather" id="weather">
+                    <option value="1">Clouds</option>
+                    <option value="0">Clear</option>
+                    <option value="6">Rain</option>
+                    <option value="2">Drizzle</option>
+                    <option value="5">Mist</option>
+                    <option value="4">Haze</option>
+                    <option value="3">Fog</option>
+                    <option value="10">Thunderstorm</option>
+                    <option value="8">Snow</option>
+                    <option value="9">Squall</option>
+                    <option value="7">Smoke</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>year:</label>
+                <input type="number" min="2012" max="2025" name="year" placeholder="year" required>
+            </div>
+
+            <div class="form-group">
+                <label>month:</label>
+                <input type="number" min="1" max="12" name="month" placeholder="month" required>
+            </div>
+
+            <div class="form-group">
+                <label>day:</label>
+                <input type="number" min="1" max="31" name="day" placeholder="day" required>
+            </div>
+
+            <div class="form-group">
+                <label>hours:</label>
+                <input type="number" min="0" max="24" name="hours" placeholder="hours" required>
+            </div>
+
+            <div class="form-group">
+                <label>minutes:</label>
+                <input type="number" min="0" max="60" name="minutes" placeholder="minutes" required>
+            </div>
+
+            <div class="form-group">
+                <label>seconds:</label>
+                <input type="number" min="0" max="60" name="seconds" placeholder="seconds" required>
+            </div>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        <div class="prediction-text">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>
